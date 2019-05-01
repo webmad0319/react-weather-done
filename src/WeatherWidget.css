@@ -1,0 +1,12 @@
+.WeatherWidget {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    background: #ccc;
+    border: 1px solid black;
+    font-size: 10px;
+}
