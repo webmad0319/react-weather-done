@@ -7,6 +7,10 @@
     width: 200px;
     height: 200px;
     background: #ccc;
-    border: 1px solid black;
+    border: 1px dotted black;
     font-size: 10px;
+}
+
+.WeatherWidget .city {
+    color: white;
 }

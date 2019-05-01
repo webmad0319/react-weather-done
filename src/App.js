@@ -16,12 +16,17 @@ class App extends React.Component {
   }
 
   chooseContinent(continentStr) {
-    const citiesOfContinent = this.state.cities.filter(city => city.continent === continentStr)
+    const citiesOfContinent = this.state.cities
+      .filter(city => city.continent === continentStr)
+      .sort((a, b) => {
+        if (a.temperature > b.temperature) return -1
+        if (a.temperature < b.temperature) return 1
+      })
     const temperatures = citiesOfContinent.map(city => city.temperature)
 
     this.setState({
       ...this.state,
-      chooseContinent: continentStr,
+      chosenContinent: continentStr,
       citiesOfContinent: citiesOfContinent,
       maxTemp: Math.max(...temperatures),
       minTemp: Math.min(...temperatures)
@@ -31,9 +36,6 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <h1>Your chosen continent is {this.state.chooseContinent}</h1>
-        <h2>{this.state.minTemp} / {this.state.maxTemp}</h2>
-
         <ul className="continent-displayer">
           <li onClick={() => this.chooseContinent("Europe")}>Europe</li>
           <li onClick={() => this.chooseContinent("America")}>America</li>
@@ -41,6 +43,10 @@ class App extends React.Component {
           <li onClick={() => this.chooseContinent("Asia")}>Asia</li>
           <li onClick={() => this.chooseContinent("Oceania")}>Oceania</li>
         </ul>
+
+        {
+          this.state.chosenContinent !== undefined && <h1>Your chosen continent is {this.state.chosenContinent}</h1>
+        }
 
         <div className="allCities">
           {
